@@ -14,7 +14,7 @@ function DoneTask() {
   }, [dispatch]);
 
   return (
-    <List style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
+    <List sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
       {doneTasks.map((item) => (
         <ListItem key={item.id} disablePadding>
           <ListItemText

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 import UseForm from '../widget/UseForm';
-import TaskList from '../widget/TaskList';
+import TaskItem from '../widget/TaskItem';
 import { taskAsyncActions } from '../saga/asyncActions';
 
 function Main() {
@@ -34,7 +34,7 @@ function Main() {
           )}
         </Formik>
       </div>
-      <TaskList/>
+      <TaskItem></TaskItem>
     </main>
   );
 }

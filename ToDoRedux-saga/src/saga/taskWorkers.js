@@ -72,14 +72,15 @@ export function* doneTaskAsync(action) {
 export function* editTaskAsync(action) {
     const tasks = yield select((state) => state.tasks.data);
     const updatedTasks = tasks.map(task => {
-        if (task.id === action.payload) {
-            return { ...task, edit: !task.edit };
-        }
-        return task;
+      if (task.id === action.payload) {
+        return { ...task, edit: !task.edit };
+      }
+      return task;
     });
     yield put(editTask(updatedTasks));
     yield saveToLocalStorage();
-}
+  }
+  
 
 export function* savingAfterEditingAsync(action){
     const tasks = yield select((state) => state.tasks.data);

@@ -10,7 +10,7 @@ export default function ButtonClear() {
     };
 
     return (
-        <Button variant='contained' type='button' onClick={handleClearTasksList} style={{ width: 100, height: 45, marginLeft: 10 }}>
+        <Button variant='contained' type='button' onClick={handleClearTasksList} sx={{ width: 100, height: 45, marginLeft: 1 }}>
             Clear
         </Button>
     );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { routes } from '../config/routes';
 import Main from '../pages/Main';
@@ -8,8 +8,9 @@ import DoneTask from '../pages/DoneTask';
 import { Provider } from 'react-redux';
 import { store } from '../redux/store';
 
-function App() {
 
+function App() {
+ 
   return (
     <Provider store={store}>
        <BrowserRouter>

@@ -8,6 +8,7 @@ export const taskAsyncActions = Object.freeze({
     clearTasksAsync: createAction('CLEAR_TASKS'),
     loadHistoryTasksAsync: createAction('LOAD_HISTORY'),
     loadDoneTasksAsync: createAction('LOAD_DONE'),
-    editTaskAsync: createAction('LOAD_DONE'),
+    editTaskAsync: createAction('EDIT_TASK'),
     savingAfterEditingAsync: createAction('SAVING_TASK_AFTER_EDIT'),
 });
+    

@@ -5,15 +5,15 @@ export function* saveToLocalStorage() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-export function* deleteToLocalStorage(id) {
+export function* deleteToLocalStorage(taskId) {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    const updatedTasks = tasks.filter(item => item.id !== id);
+    const updatedTasks = tasks.filter(task => task.id !== taskId);
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
 }
 
 export function* saveDeletedTaskLocalStorage() {
-    const deleteTasks = yield select((state) => state.deleteTask.data);
-    localStorage.setItem('tasksHistory', JSON.stringify(deleteTasks));
+    const deletedTasks = yield select((state) => state.deletedTasks.data);
+    localStorage.setItem('tasksHistory', JSON.stringify(deletedTasks));
 }
 
 export function* saveDoneTaskLocalStorage() {

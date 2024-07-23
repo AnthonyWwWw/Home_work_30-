@@ -7,7 +7,6 @@ export default function ButtonDoneTask({ id }) {
 
   const handleDoneTask = () => {
       dispatch(taskAsyncActions.doneTaskAsync(id));
-      dispatch 
   }
 
   return (

@@ -21,6 +21,7 @@ export const taskSlice = createSlice({
             state.data = [];
         },
         editTask: (state,action) => {
+            console.log(action.payload)
             state.data =  action.payload;
         }
           

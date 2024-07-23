@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ButtonGroup from '@mui/material/ButtonGroup';
@@ -9,36 +9,37 @@ import ButtonEditTask from './Button/ButtonEditTask';
 import ListItemText from '@mui/material/ListItemText';
 import TextField from '@mui/material/TextField';
 import { taskAsyncActions } from '../saga/asyncActions';
+import { Box } from '@mui/material';
 
 export default function TaskItem() {
     const tasks = useSelector((state) => state.tasks.data);
     const dispatch = useDispatch();
 
-    const handleSave = (id, value) => {
+    const handleSave = useCallback((id, value) => {
         dispatch(taskAsyncActions.savingAfterEditingAsync({ id, value }));
-    };
+      }, [dispatch]);
 
     return (
-        <div style={{ marginTop: 50, width: 750 }}>
+        <Box>
             {tasks.map((item, index) => (
-                <div className='item' key={item.id} style={{ marginBottom: 16 }}>
+                <Box className='item' key={item.id} sx={{display: 'flex'}}>
                     <List>
-                        <ListItem>
+                        <ListItem sx={{borderRadius: 5}}>
                             {!item.edit ? (
                                 <>
                                     <ListItemText
                                         primary={item.task}
-                                        style={{
+                                        sx={{
                                             width: 485,
                                             borderRadius: 5,
                                             boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
                                             border: '1px solid rgba(186, 185, 185, 0.87)',
-                                            padding: 10,
+                                            padding: 1,
                                             position: 'relative',
                                         }}
                                     />
-                                    <div
-                                        style={{
+                                    <Box
+                                        sx={{
                                             position: 'absolute',
                                             width: 20,
                                             textAlign: 'center',
@@ -51,7 +52,7 @@ export default function TaskItem() {
                                         }}
                                     >
                                         {index + 1}
-                                    </div>
+                                    </Box>
                                 </>
                             ) : (
                                 <TextField
@@ -59,26 +60,38 @@ export default function TaskItem() {
                                     label={`edit-${index + 1}`}
                                     variant='outlined'
                                     defaultValue={item.task}
-                                    style={{ width: 485, backgroundColor: '#8FBC8F', borderRadius: 5 }}
+                                    sx={{ 
+                                        backgroundColor: '#D5F0D9',  
+                                        width: 485,
+                                        borderRadius: 5,
+                                        boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
+                                        border: '1px solid rgba(186, 185, 185, 0.87)',
+                                        position: 'relative',
+                                        '& .MuiOutlinedInput-root': {
+                                        '& fieldset': {
+                                        border: 'none',
+                                        },
+                                        
+                                    }}}
                                     onBlur={(e) => handleSave(item.id, e.target.value)}
                                 />
                             )}
                         </ListItem>
                     </List>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <ButtonGroup
                             disableElevation
                             variant='contained'
                             aria-label='Disabled button group'
-                            style={{ width: 200, height: 45 }}
+                            sx={{ width: 200, height: 45 }}
                         >
                             <ButtonDoneTask id={item.id} />
                             <ButtonDeleteTask id={item.id} />
-                            <ButtonEditTask id={item.id} />
+                            <ButtonEditTask id={item.id} edit={item.edit} />
                         </ButtonGroup>
-                    </div>
-                </div>
+                    </Box>
+                </Box>
             ))}
-        </div>
+        </Box>
     );
 }
